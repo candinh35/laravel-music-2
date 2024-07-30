@@ -1,0 +1,40 @@
+DuongNT : 
+1. Architecture
+    + Controller: Nên áp dụng try catch bên Controller
+    VD : 
+        public function updatePaymentStatus(BookingUpdatePaymentStatusRequest $request)
+        {
+        try {
+            $this->entryService->updatePaymentStatus($request);
+            return response()->json([]);
+        } catch (AppServiceException $e)
+        {
+            return response()->json([
+                'error_msg' => $e->getMessage(),
+            ], $e->getCode() ?: SERVER_ERROR);
+        }
+    }
+
+    + Model : Khai báo tên model, table, các trường, hằng số -> relations -> các hàm truy vấn
+    + View : Phân chia theo các module , chia các module càng nhỏ càng tốt
+    VD : Các module về textinput, radio, checkbox, ngày tháng năm, pagination ...
+    + css/js : Sau khi dùng template thì những thư viện nào ko dùng đến nên bỏ đi. 
+2. Validate : Nên áp dụng đa dạng các kiểu validate( kết hợp dùng của laravel và js , html )
+3. Convention : 
+4. UI
+5. Function
+6. Other
+
+Tổng kêt
+- Minus
+    - Validate :
+    - Convention: 
++ 1 số chỗ code debug nên xóa đi
+    - Function : 
++ Trong hàm postVNPay các mã vnp_TmnCode  và vnp_HashSecret  nên viết sang file .env
+
+
+    - UI
+    - Duedate : Đúng hạn
+- Bonus
+   + Viết đúng theo mô hình MVC: +1
